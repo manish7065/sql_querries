@@ -30,6 +30,14 @@ NATURAL JOIN movie_cast
 WHERE role IS  NOT NULL
 AND mov_title='Eyes Wide Shut';
 
+-- 4. From the following tables, write a SQL query to find the director of a movie that cast a role as Sean Maguire. Return director first name, last name and movie title.
+
+SELECT dir_fname,dir_lname,mov_title FROM director
+NATURAL JOIN movie_direction
+NATURAL JOIN movie
+NATURAL JOIN movie_cast
+WHERE role IS NOT NULL
+AND mov_title = 'Eyes Wide Shut';
 
 --5. From the following table, write a SQL query to find out which actors have not appeared in any movies between 1990 and 2000 (Begin and end values are included.). Return actor first name, last name, movie title and release year.
 
