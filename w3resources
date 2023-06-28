@@ -1,0 +1,66 @@
+--From the following table, write a SQL query to find all reviewers whose ratings contain a NULL value. 
+--Return reviewer name.
+
+SELECT rev_name FROM reviewer
+INNER JOIN rating USING(rev_id)
+WHERE rev_stars IS NULL;
+
+
+--2. From the following table, write a SQL query to find out who was cast in the movie 'Annie Hall'. 
+--   Return actor first name, last name and role.
+
+SELECT act_fname,act_lname,role FROM actor 
+JOIN movie_cast ON actor.act_id=movie_cast.act_id
+JOIN movie ON movie_cast.mov_id=movie.mov_id 
+AND movie.mov_title='Annie Hall';
+
+SELECT act_fname, act_lname, role FROM actor 
+NATURAL JOIN movie_cast NATURAL JOIN movie
+WHERE mov_title = 'Annie Hall';
+
+
+--3. From the following table, write a SQL query to find the director who directed a movie 
+--   that featured a role in 'Eyes Wide Shut'. Return director first name, last name and movie title.
+
+SELECT dir_fname, dir_lname, mov_title
+FROM  director 
+NATURAL JOIN movie_direction
+NATURAL JOIN movie
+NATURAL JOIN movie_cast
+WHERE role IS  NOT NULL
+AND mov_title='Eyes Wide Shut';
+
+
+--5. From the following table, write a SQL query to find out which actors have not appeared in any movies between 1990 and 2000 (Begin and end values are included.). Return actor first name, last name, movie title and release year.
+
+SELECT act_fname,act_lname,mov_title,mov_year from actor
+natural join movie_cast
+natural join movie
+WHERE mov_year NOT BETWEEN 1990 AND 2000;
+
+SELECT act_fname, act_lname, mov_title, mov_year
+FROM actor
+NATURAL JOIN movie_cast
+NATURAL JOIN movie
+WHERE mov_year NOT BETWEEN 1990 AND 2000;
+
+
+SELECT act_fname,act_lname,mov_title,mov_year FROM actor
+JOIN movie_cast ON movie_cast.act_id=actor.act_id
+JOIN movie ON movie.mov_id=movie_cast.mov_id
+WHERE mov_year NOT BETWEEN 1990 AND 2000;
+
+
+
+SELECT a.act_fname, a.act_lname, c.mov_title, c.mov_year
+FROM actor a, movie_cast b, movie c
+WHERE a.act_id=b.act_id
+AND b.mov_id=c.mov_id
+AND c.mov_year NOT BETWEEN 1990 and 2000;
+
+-- not working
+SELECT a.act_fname, a.act_lname, m.mov_title, m.mov_year
+FROM actor a, movie m, movie_cast c
+where a.act_id=m.act_id
+and m.mov_id=c.mov_id
+and mov_year mot between 1990 and 2000;
