@@ -37,3 +37,15 @@ natural join salesman
 where salesman.city = 'New York'
 
 SELECT * FROM orders WHERE salesman_id IN (select salesman_id FROM salesman WHERE city ='New York');
+
+-- 6. From the following tables write a SQL query to determine the commission of the salespeople in Paris. Return commission.
+
+select commission from salesman
+natural join orders
+natural join customer
+where customer.city='Paris';
+
+select commission from salesman
+where salesman_id in (select salesman_id from customer where city='Paris';
+
+SELECT commission FROM salesman WHERE salesman_id IN (select salesman_id FROM customer WHERE city = 'Paris');
