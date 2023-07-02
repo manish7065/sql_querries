@@ -29,3 +29,11 @@ WHERE ORDERS.PURCH_AMT > (SELECT AVG(PURCH_AMT)
 FROM ORDERS WHERE ORD_DATE>2012-10-20);
 
 SELECT * FROM orders WHERE purch_amt > (select AVG(purch_amt) FROM orders where ord_date ='10/10/2012');
+
+-- 5. From the following tables, write a SQL query to find all the orders generated in New York city. Return ord_no, purch_amt, ord_date, customer_id and salesman_id.
+
+select * from orders
+natural join salesman
+where salesman.city = 'New York'
+
+SELECT * FROM orders WHERE salesman_id IN (select salesman_id FROM salesman WHERE city ='New York');
