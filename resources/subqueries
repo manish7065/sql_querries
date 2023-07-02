@@ -21,3 +21,11 @@ SELECT * FROM orders WHERE salesman_id IN (SELECT salesman_id FROM salesman WHER
 
 SELECT * FROM orders WHERE salesman_id = (SELECT DISTINCT 
 salesman_id FROM orders WHERE customer_id = 3007);
+
+-- 4. From the following tables write a SQL query to find the order values greater than the average order value of 10th October 2012. Return ord_no, purch_amt, ord_date, customer_id, salesman_id.
+
+SELECT * FRON ORDERS
+WHERE ORDERS.PURCH_AMT > (SELECT AVG(PURCH_AMT)
+FROM ORDERS WHERE ORD_DATE>2012-10-20);
+
+SELECT * FROM orders WHERE purch_amt > (select AVG(purch_amt) FROM orders where ord_date ='10/10/2012');
