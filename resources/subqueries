@@ -49,3 +49,7 @@ select commission from salesman
 where salesman_id in (select salesman_id from customer where city='Paris';
 
 SELECT commission FROM salesman WHERE salesman_id IN (select salesman_id FROM customer WHERE city = 'Paris');
+
+-- 7. Write a query to display all the customers whose ID is 2001 below the salesperson ID of Mc Lyon.
+
+SELECT * FROM customer WHERE customer_id = (select salesman_id -2001 FROM salesman WHERE name = 'Mc Lyon');
