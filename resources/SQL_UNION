@@ -9,3 +9,8 @@ UNION
 FROM customer
 WHERE city='London')
 
+-- 2. From the following tables, write a SQL query to find distinct salespeople and their cities. Return salesperson ID and city.
+
+SELECT salesman_id,city From customer
+UNION
+(SELECT salesman_id, city from salesman)
