@@ -6,4 +6,17 @@ join soccer_city b ON a.city_id=b.city_id
 JOIN match_mast d ON d.venue_id=a.venue_id
 AND d.play_stage="F";
 
-2. 
+2. From the following tables, write a SQL query to find the number of goals scored by each team in each match during normal play. 
+Return match number, country name and goal score.
+
+SELECT match_no, country_name, goal_score FROM match_details m
+join SOCCER_COUNTRY s ON s.country_id= m.teamid
+WHERE decided_by = 'N'
+order by mach_no;
+
+SELECT match_no,country_name,goal_score
+FROM match_details a
+JOIN soccer_country b
+ON a.team_id=b.country_id
+WHERE decided_by='N'
+ORDER BY match_no;
