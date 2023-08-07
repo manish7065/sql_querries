@@ -78,3 +78,19 @@ GROUP BY country_name,player_name HAVING COUNT(player_name) >= ALL
    JOIN player_mast pm ON gd.player_id =pm.player_id
    JOIN soccer_country sc ON pm.team_id = sc.country_id
    GROUP BY country_name,player_name);
+
+
+-- 5. From the following table, write a SQL query to find out who scored in the final of the 2016 Euro Cup. Return player name, jersey number and country name.
+
+SELECT player_name, jersey_name, country_name FROM goal_detils gd
+JOIN player_mast pm ON pm.player_id=gd.player_id
+JOIN soccer_country sc on sc.country_id = gd.team_id
+WHERE play_stage = "f";
+
+SELECT player_name,jersey_no,country_name
+FROM goal_details a
+JOIN player_mast b ON a.player_id=b.player_id
+JOIN soccer_country c ON a.team_id=c.country_id
+WHERE play_stage='F';
+
+
