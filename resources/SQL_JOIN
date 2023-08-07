@@ -1,0 +1,9 @@
+-- 1. From the following table, write a SQL query to find out where the final match of the EURO cup 2016 was played. 
+-- Return venue name, city.
+
+SELECT venue_name, city from soccer_venue a
+join soccer_city b ON a.city_id=b.city_id
+JOIN match_mast d ON d.venue_id=a.venue_id
+AND d.play_stage="F";
+
+2. 
