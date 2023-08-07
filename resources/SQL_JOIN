@@ -85,7 +85,7 @@ GROUP BY country_name,player_name HAVING COUNT(player_name) >= ALL
 SELECT player_name, jersey_name, country_name FROM goal_detils gd
 JOIN player_mast pm ON pm.player_id=gd.player_id
 JOIN soccer_country sc on sc.country_id = gd.team_id
-WHERE play_stage = "f";
+WHERE play_stage = "F";
 
 SELECT player_name,jersey_no,country_name
 FROM goal_details a
