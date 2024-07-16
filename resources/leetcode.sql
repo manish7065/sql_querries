@@ -137,3 +137,43 @@ GROUP BY
   diagnosis
 HAVING COUNT(*) > 1;
 
+-- Show the city and the total number of patients in the city.
+-- Order from most to least patients and then by city name ascending.
+
+SELECT
+  city,
+  COUNT(*) AS num_patients
+FROM patients
+GROUP BY city
+ORDER BY num_patients DESC, city asc;
+
+-- Show first name, last name and role of every person that is either patient or doctor.
+-- The roles are either "Patient" or "Doctor"
+
+SELECT first_name, last_name, 'Patient' AS role
+FROM patients
+UNION ALL
+SELECT first_name, last_name, 'Doctor' AS role
+FROM doctors;
+
+
+
+-- Show all allergies ordered by popularity. Remove NULL values from query.
+
+SELECT
+  allergies,
+  COUNT(*) AS total_diagnosis
+FROM patients
+WHERE
+  allergies IS NOT NULL
+GROUP BY allergies
+ORDER BY total_diagnosis DESC
+
+SELECT
+  allergies,
+  count(*)
+FROM patients
+WHERE allergies NOT NULL
+GROUP BY allergies
+ORDER BY count(*) DESC
+
